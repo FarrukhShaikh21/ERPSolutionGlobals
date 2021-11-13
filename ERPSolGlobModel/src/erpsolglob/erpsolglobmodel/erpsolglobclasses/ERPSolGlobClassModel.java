@@ -9,7 +9,7 @@ public class ERPSolGlobClassModel {
 
     public static String doGetModelUserName() {
             //return ERPGlobalPLSQLClass.doGetModelUserSno();
-            return ADFContext.getCurrent().getPageFlowScope().get("G_USER_NAME").toString();
+            return ADFContext.getCurrent().getPageFlowScope().get("GLOB_USER_NAME").toString();
         }
   
 
@@ -40,5 +40,9 @@ public class ERPSolGlobClassModel {
            return 
              Integer.parseInt(ADFContext.getCurrent().getPageFlowScope().get("GLOB_COMPANY_CODE").toString());
       }
-    
+  
+    public static oracle.jbo.domain.Date doGetOracleJBOCurrentDate() {
+         return new oracle.jbo.domain.Date(new java.sql.Timestamp(System.currentTimeMillis()));
+     }
+        
 }
