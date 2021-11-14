@@ -44,5 +44,9 @@ public class ERPSolGlobClassModel {
     public static oracle.jbo.domain.Date doGetOracleJBOCurrentDate() {
          return new oracle.jbo.domain.Date(new java.sql.Timestamp(System.currentTimeMillis()));
      }
-        
+// 
+    public static String doGetModuleId() {
+           return 
+             ADFContext.getCurrent().getPageFlowScope().get("GLOB_ERP_MODULE_ACTION").toString();
+      }
 }
