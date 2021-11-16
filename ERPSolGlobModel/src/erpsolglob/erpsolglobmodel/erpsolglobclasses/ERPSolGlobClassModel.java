@@ -14,18 +14,26 @@ public class ERPSolGlobClassModel {
   
 
     public static String doGetUserCode(){
-        return ADFContext.getCurrent().getSessionScope().get("GLOB_USER_CODE").toString();
+        return ADFContext.getCurrent().getPageFlowScope().get("GLOB_USER_CODE").toString();
     }  
   
+ 
+    public static String doGetUserrEGIONCode(){
+        return ADFContext.getCurrent().getPageFlowScope().get("GLOB_USER_REGION").toString();
+    }  
     
     public static String doGetUserLocationCode(){
-        return ADFContext.getCurrent().getSessionScope().get("GLOB_USER_LOCATION").toString();
+        return ADFContext.getCurrent().getPageFlowScope().get("GLOB_USER_LOCATION").toString();
     }  
   
     public static String doGetUserStoreCode(){
-        return ADFContext.getCurrent().getSessionScope().get("GLOB_USER_STORE").toString();
+        return ADFContext.getCurrent().getPageFlowScope().get("GLOB_USER_STORE").toString();
     } 
  
+    public static String doGetUserHLevel(){
+        return ADFContext.getCurrent().getPageFlowScope().get("GLOB_USER_HLEVEL").toString();
+    } 
+    
     public static String doGetUserPictureName() {
             //return ERPGlobalPLSQLClass.doGetModelUserSno();
             try {
