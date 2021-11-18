@@ -1,13 +1,28 @@
 package erpsolglob.erpsolglobmodel.erpsolglobclasses;
 
+import oracle.jbo.AttributeList;
 import oracle.jbo.server.EntityImpl;
+import oracle.jbo.server.SequenceImpl;
 import oracle.jbo.server.TransactionEvent;
 
 public class ERPSolGlobalsEntityImpl extends EntityImpl {
+    String ERPSolPKSeqName;
+    String ERPSolPKColumnName;
+    String ERPISGenertePK="YES";
     public ERPSolGlobalsEntityImpl() {
         super();
     }
     @Override
+    protected void create(AttributeList attributeList) {
+        // TODO Implement this method
+        
+        if (getERPISGenertePK().equals("YES")) {
+            SequenceImpl seq = new SequenceImpl(ERPSolPKSeqName, getDBTransaction());
+            setAttribute(getERPSolPKColumnName(), seq.getSequenceNumber().intValue());
+        }
+        super.create(attributeList);
+
+    }
     protected void doDML(int i, TransactionEvent transactionEvent) {
         // TODO Implement this method
         if (i == DML_INSERT) {
@@ -70,5 +85,29 @@ public class ERPSolGlobalsEntityImpl extends EntityImpl {
 
         }
         super.doDML(i, transactionEvent);
+    }
+
+    public void setERPSolPKSeqName(String ERPSolPKSeqName) {
+        this.ERPSolPKSeqName = ERPSolPKSeqName;
+    }
+
+    public String getERPSolPKSeqName() {
+        return ERPSolPKSeqName;
+    }
+
+    public void setERPSolPKColumnName(String ERPSolPKColumnName) {
+        this.ERPSolPKColumnName = ERPSolPKColumnName;
+    }
+
+    public String getERPSolPKColumnName() {
+        return ERPSolPKColumnName;
+    }
+
+    public void setERPISGenertePK(String ERPISGenertePK) {
+        this.ERPISGenertePK = ERPISGenertePK;
+    }
+
+    public String getERPISGenertePK() {
+        return ERPISGenertePK;
     }
 }

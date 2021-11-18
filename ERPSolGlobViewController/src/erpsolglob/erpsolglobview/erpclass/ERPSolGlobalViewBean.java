@@ -2,12 +2,21 @@ package erpsolglob.erpsolglobview.erpclass;
 
 import erpsolglob.erpsolglobmodel.erpsolglobclasses.ERPSolGlobClassModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.faces.model.SelectItem;
+
 import oracle.adf.share.ADFContext;
 import oracle.binding.BindingContainer;
 import oracle.adf.model.BindingContext;
 import oracle.adf.model.binding.DCBindingContainer;
 import oracle.adf.model.binding.DCDataControl;
 import oracle.adf.model.binding.DCIteratorBinding;
+
+import oracle.jbo.ApplicationModule;
+import oracle.jbo.Row;
+import oracle.jbo.ViewObject;
 
 public class ERPSolGlobalViewBean {
     public ERPSolGlobalViewBean() {
@@ -38,5 +47,24 @@ public class ERPSolGlobalViewBean {
         DCDataControl dc = binding.getDataControl();
 
         return dc.isTransactionDirty();
+    }    
+
+    public static List<SelectItem> doERPSolGetAutoSuggestedValues(String pSearch,String pViewObjectName,String pWhereColumn,String pAttribute1,String pAttribute2,Integer pNoOfRecordsSuggest) {
+        List<SelectItem> ResultList = new ArrayList<SelectItem>();
+        DCBindingContainer bc = (DCBindingContainer) BindingContext.getCurrent().getCurrentBindingsEntry();
+        DCDataControl ERPSoldc = bc.getDataControl();
+        ApplicationModule ERPSolam = ERPSoldc.getApplicationModule();
+        ViewObject vo = ERPSolam.findViewObject(pViewObjectName);
+        vo.getViewObject().reset();
+        vo.getViewObject().setWhereClause(pWhereColumn + " LIKE UPPER('%" + pSearch + "%') AND ROWNUM<="+pNoOfRecordsSuggest);
+        vo.executeQuery();
+        //System.out.println(vo.getEstimatedRowCount()+ " ERC");
+        while (vo.getViewObject().hasNext()) {
+            Row suggestedRow = vo.next();
+            ResultList.add(new SelectItem(suggestedRow.getAttribute(pAttribute1) + "(" +(pAttribute2.equals("-") ? "" : suggestedRow.getAttribute(pAttribute2))+")"));
+        }
+        
+        return ResultList;
+        
     }    
 }
