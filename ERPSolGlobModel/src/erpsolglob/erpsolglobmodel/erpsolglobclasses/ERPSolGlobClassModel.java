@@ -49,9 +49,9 @@ public class ERPSolGlobClassModel {
             }
         }   
   
-    public static Integer doGetUserCompanyCode() {
+    public static String doGetUserCompanyCode() {
            return 
-             Integer.parseInt(ADFContext.getCurrent().getPageFlowScope().get("GLOB_COMPANY_CODE").toString());
+             ADFContext.getCurrent().getPageFlowScope().get("GLOB_COMPANY_CODE").toString();
       }
   
     public static oracle.jbo.domain.Date doGetOracleJBOCurrentDate() {

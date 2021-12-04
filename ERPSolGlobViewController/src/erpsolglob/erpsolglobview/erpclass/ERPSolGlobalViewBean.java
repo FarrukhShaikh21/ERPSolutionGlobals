@@ -10,6 +10,7 @@ import javax.faces.model.SelectItem;
 import oracle.adf.share.ADFContext;
 import oracle.binding.BindingContainer;
 import oracle.adf.model.BindingContext;
+import oracle.adf.model.OperationBinding;
 import oracle.adf.model.binding.DCBindingContainer;
 import oracle.adf.model.binding.DCDataControl;
 import oracle.adf.model.binding.DCIteratorBinding;
@@ -38,7 +39,7 @@ public class ERPSolGlobalViewBean {
     }
   
     public static BindingContainer doGetERPBindings() {
-           return BindingContext.getCurrent().getCurrentBindingsEntry();
+           return (BindingContainer)BindingContext.getCurrent().getCurrentBindingsEntry();
        }   
     public static boolean doIsERPSolTransactionDirty() {
         //this will check do we have any unsaved changes on form
@@ -47,7 +48,29 @@ public class ERPSolGlobalViewBean {
         DCDataControl dc = binding.getDataControl();
 
         return dc.isTransactionDirty();
-    }    
+    }
+    
+    public  static OperationBinding doIsERPSolGerOperationBinding(String pEERPOperationName ) {
+        //this will check do we have any unsaved changes on form
+        oracle.binding.BindingContainer erpbc = doGetERPBindings();
+        return (OperationBinding)erpbc.getOperationBinding(pEERPOperationName);
+    }
+    
+    
+    public String doExecuteOperationBindingNew() {
+        System.out.println("zero");
+        doIsERPSolGerOperationBinding("Commit").execute();
+        System.out.println("one");
+        return null;
+    }
+    
+    public String doExecuteOperationBinding() {
+        System.out.println("zero");
+        doIsERPSolGerOperationBinding("Commit1").execute();
+        System.out.println("one");
+        return null;
+    }
+    
 
     public static List<SelectItem> doERPSolGetAutoSuggestedValues(String pSearch,String pViewObjectName,String pWhereColumn,String pAttribute1,String pAttribute2,Integer pNoOfRecordsSuggest) {
         List<SelectItem> ResultList = new ArrayList<SelectItem>();
@@ -61,7 +84,7 @@ public class ERPSolGlobalViewBean {
         //System.out.println(vo.getEstimatedRowCount()+ " ERC");
         while (vo.getViewObject().hasNext()) {
             Row suggestedRow = vo.next();
-            ResultList.add(new SelectItem(suggestedRow.getAttribute(pAttribute1) + "(" +(pAttribute2.equals("-") ? "" : suggestedRow.getAttribute(pAttribute2))+")"));
+            ResultList.add(new SelectItem(suggestedRow.getAttribute(pAttribute1), suggestedRow.getAttribute(pAttribute1)+(pAttribute2.equals("-") ? "" : " ("+suggestedRow.getAttribute(pAttribute2))+")"));
         }
         
         return ResultList;

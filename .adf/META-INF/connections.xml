@@ -4,19 +4,19 @@
     <Factory className="oracle.jdevimpl.db.adapter.DatabaseProviderFactory1212"/>
     <RefAddresses>
       <StringRefAddr addrType="sid">
-        <Contents>ELEVENG</Contents>
+        <Contents>shopdb</Contents>
       </StringRefAddr>
       <StringRefAddr addrType="subtype">
         <Contents>oraJDBC</Contents>
       </StringRefAddr>
       <StringRefAddr addrType="user">
-        <Contents>ACS</Contents>
-      </StringRefAddr>
-      <StringRefAddr addrType="hostname">
-        <Contents>localhost</Contents>
+        <Contents>qshop</Contents>
       </StringRefAddr>
       <StringRefAddr addrType="port">
         <Contents>1521</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="hostname">
+        <Contents>192.168.1.200</Contents>
       </StringRefAddr>
       <SecureRefAddr addrType="password"/>
       <StringRefAddr addrType="oraDriverType">
