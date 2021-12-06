@@ -4,7 +4,7 @@
     <af:document title="ERPSolGlobalDemo.jsf" id="d1">
         <af:messages id="m1"/>
         <af:form id="f1">
-            <af:button text="button 1" id="b1" icon="#{resource['images:imgHome.png']}"/>
+            <af:button text="button 1" id="b1" icon="#{resource['images:imgExitForm.png']}"/>
         </af:form>
     </af:document>
 </f:view>
