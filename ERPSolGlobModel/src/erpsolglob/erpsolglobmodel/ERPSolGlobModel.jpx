@@ -30,6 +30,14 @@
     </DesignTime>
   </Containee>
   <Containee
+    Name="erpsolglobqvo"
+    PackageName="erpsolglob.erpsolglobmodel.erpsolglobqvo"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VO" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
     Name="erpsolglobvo"
     PackageName="erpsolglob.erpsolglobmodel.erpsolglobvo"
     ObjectType="JboPackage">
