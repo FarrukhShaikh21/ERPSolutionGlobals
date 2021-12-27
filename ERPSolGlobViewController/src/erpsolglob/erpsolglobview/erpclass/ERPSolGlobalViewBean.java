@@ -89,5 +89,25 @@ public class ERPSolGlobalViewBean {
         
         return ResultList;
         
+    }
+    
+    
+    public static List<SelectItem> doERPSolGetAutoSuggestedValues(String pSearch,String pViewObjectName,String pWhereColumn,String pAttribute1,String pAttribute2,Integer pNoOfRecordsSuggest,String pERPSolDCName) {
+        List<SelectItem> ResultList = new ArrayList<SelectItem>();
+        DCBindingContainer bc = (DCBindingContainer) BindingContext.getCurrent().getCurrentBindingsEntry();
+        DCDataControl ERPSoldc = bc.findDataControl(pERPSolDCName);
+        ApplicationModule ERPSolam = ERPSoldc.getApplicationModule();
+        ViewObject vo = ERPSolam.findViewObject(pViewObjectName);
+        vo.getViewObject().reset();
+        vo.getViewObject().setWhereClause(pWhereColumn + " LIKE UPPER('%" + pSearch + "%') AND ROWNUM<="+pNoOfRecordsSuggest);
+        vo.executeQuery();
+        //System.out.println(vo.getEstimatedRowCount()+ " ERC");
+        while (vo.getViewObject().hasNext()) {
+            Row suggestedRow = vo.next();
+            ResultList.add(new SelectItem(suggestedRow.getAttribute(pAttribute1), suggestedRow.getAttribute(pAttribute1)+(pAttribute2.equals("-") ? "" : " ("+suggestedRow.getAttribute(pAttribute2))+")"));
+        }
+        
+        return ResultList;
+        
     }    
 }
