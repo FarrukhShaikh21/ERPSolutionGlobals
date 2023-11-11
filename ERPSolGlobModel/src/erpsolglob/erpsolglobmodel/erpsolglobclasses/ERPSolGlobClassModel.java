@@ -36,7 +36,7 @@ public class ERPSolGlobClassModel {
     } 
  
     public static String doGetUserHLevel(){
-        return ADFContext.getCurrent().getPageFlowScope().get("GLOB_USER_HLEVEL").toString();
+        return ADFContext.getCurrent().getPageFlowScope().get("GLOB_H_LEVEL").toString();
     } 
     
     public static String doGetUserPictureName() {
