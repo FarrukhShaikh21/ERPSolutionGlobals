@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE JboProject SYSTEM "jbo_03_01.dtd">
+<!---->
+<JboProject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="ERPSolGlobModel"
+  Version="12.1.3.10.47"
+  SeparateXMLFiles="true"
+  PackageName="erpsolglob.erpsolglobmodel">
+  <DesignTime>
+    <Attr Name="_jprName" Value="../../../ERPSolGlobModel.jpr"/>
+    <Attr Name="_jbo.TypeMapEntries" Value="OracleApps"/>
+    <Attr Name="_NamedConnection" Value="ERPSolGlobalConn"/>
+    <Attr Name="_appModuleNames0" Value="erpsolglob.erpsolglobmodel.erpsolglobam.ERPSolGlobAppModule"/>
+  </DesignTime>
+  <Containee
+    Name="erpsolglobam"
+    PackageName="erpsolglob.erpsolglobmodel.erpsolglobam"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_AM" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="erpsolglobeo"
+    PackageName="erpsolglob.erpsolglobmodel.erpsolglobeo"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_EO" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="erpsolglobqvo"
+    PackageName="erpsolglob.erpsolglobmodel.erpsolglobqvo"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VO" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="erpsolglobvo"
+    PackageName="erpsolglob.erpsolglobmodel.erpsolglobvo"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VO" Value="true"/>
+    </DesignTime>
+  </Containee>
+</JboProject>
